@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1 class="text-green-600 font-bold text-4xl">Todo List</h1>
+  <div class="add-task">
+    <div>Add Task</div>
     <TodoList />
   </div>
 </template>

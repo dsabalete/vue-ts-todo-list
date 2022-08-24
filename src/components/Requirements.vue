@@ -1,23 +1,29 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Hello adventurer! Clone or fork the repo and good luck!</h2>
+  <div class="hello text-left px-4">
+    <h1 class="font-bold text-3xl mb-4 text-center">{{ msg }}</h1>
+    <h2 class="text-2xl">
+      Hello adventurer! Clone or fork the repo and good luck!
+    </h2>
 
-    <p>You are free to (and probably should):</p>
-    <ul>
+    <p class="my-2">You are free to (and probably should):</p>
+
+    <ul class="list-disc ml-8">
       <li>update or change dependencies</li>
       <li>define this project's architecture</li>
       <li>remove extra code given here as example</li>
     </ul>
 
-    <h3>You will or you have already received an email with requirements</h3>
-    <h4>Build a "To do list" - Vue JS web application</h4>
+    <h3 class="text-xl my-4">
+      You will or you have already received an email with requirements
+    </h3>
+
+    <h4 class="font-bold">Build a "To do list" - Vue JS web application</h4>
 
     <h4>
       App with simple, minimalistic and functional UI which one can open in any
       browser and:
     </h4>
-    <ul>
+    <ul class="list-disc ml-8">
       <li>Create a new, unique "to do" item</li>
       <li>Edit a "to do"</li>
       <li>Delete it ("to do" item)</li>
@@ -32,7 +38,7 @@
       complete set of requirements as well as:
     </h4>
 
-    <ul>
+    <ul class="list-disc ml-8">
       <li>
         web-based (and compatible with modern browsers) - no electron/cordova
         wrappers are needed
@@ -48,7 +54,7 @@
       </li>
     </ul>
 
-    <h3>
+    <h3 class="text-xl my-4">
       After you are done, please <strong>create a PR</strong> to this repo and
       we will go through code review (just like you would while implementing a
       feature)
@@ -58,23 +64,8 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+};
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-ul {
-  margin: 0 auto;
-  padding: 0;
-  max-width: 70%;
-}
-li {
-  margin: 0 auto;
-  text-align: left;
-  max-width: 80%;
-}
-</style>

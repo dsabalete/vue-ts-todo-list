@@ -11,6 +11,7 @@ module.exports = {
     quotes: "off",
     semi: "off",
     "comma-dangle": "off",
+    "space-before-function-paren": "off",
   },
   parserOptions: {
     parser: "@typescript-eslint/parser",
