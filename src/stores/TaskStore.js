@@ -5,29 +5,36 @@ export const useTaskStore = defineStore("TaskStore", {
   state: () => {
     return {
       tasks: [],
-      editing: false,
+      mode: "",
     };
   },
 
   actions: {
     async fill() {
       this.tasks = (await import("@/data/tasks.json")).default;
+      // in case we want to get that info from an API
       // this.tasks = (await axios.get('some/end/point')).default;
     },
 
-    toggleEditionMode() {
-      this.editing = !this.editing;
+    setMode(mode) {
+      this.mode = mode;
     },
 
     createTask(text) {
-      this.tasks.push({ id: uuid.v1(), text });
+      this.tasks.push({ id: uuid.v1(), text, done: false });
     },
 
-    remove(id) {
+    removeTask(id) {
       this.tasks.splice(
         this.tasks.findIndex((v) => v.id === id),
         1
       );
+    },
+
+    updateTask(obj) {
+      const objIndex = this.tasks.findIndex((task) => task.id === obj.id);
+      this.tasks[objIndex].text = obj.text;
+      this.tasks[objIndex].done = obj.done;
     },
   },
 

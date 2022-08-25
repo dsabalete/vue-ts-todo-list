@@ -8,12 +8,6 @@ const routes = [
     component: Home,
   },
   {
-    path: "/add_task",
-    name: "add-task",
-    component: () =>
-      import(/* webpackChunkName: "add-task" */ "./views/AddTask.vue"),
-  },
-  {
     path: "/about",
     name: "about",
     // route level code-splitting

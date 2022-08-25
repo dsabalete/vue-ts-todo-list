@@ -9,16 +9,16 @@ taskStore.fill();
 const inputTask = ref(null);
 
 const addTask = () => {
-  taskStore.toggleEditionMode();
+  taskStore.setMode("create");
 };
 
 const saveNewTask = () => {
   taskStore.createTask(inputTask.value.value);
-  taskStore.toggleEditionMode();
+  taskStore.setMode("");
 };
 
 const escape = () => {
-  taskStore.editing = false;
+  taskStore.setMode("");
 };
 </script>
 
@@ -31,7 +31,7 @@ const escape = () => {
     />
 
     <input
-      v-if="taskStore.editing"
+      v-if="taskStore.mode === 'create'"
       ref="inputTask"
       type="text"
       class="bg-green-50 my-1 p-2 hover:cursor-pointer text-left pl-4"
@@ -41,7 +41,7 @@ const escape = () => {
     />
 
     <button
-      v-if="!taskStore.editing"
+      v-if="taskStore.mode === ''"
       class="bg-green-100 text-green-800 hover:bg-green-300 w-full mt-2 p-2 border-2 border-green-800 rounded-md font-bold"
       @click="addTask"
     >
