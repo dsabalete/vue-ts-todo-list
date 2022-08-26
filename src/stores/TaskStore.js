@@ -38,5 +38,17 @@ export const useTaskStore = defineStore("TaskStore", {
     },
   },
 
-  // getters
+  getters: {
+    isModeDefault() {
+      return this.mode === "";
+    },
+
+    isModeEdit() {
+      return this.mode === "edit";
+    },
+
+    isModeCreate() {
+      return this.mode === "create";
+    },
+  },
 });

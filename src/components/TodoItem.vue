@@ -1,7 +1,8 @@
 <script setup>
 import { defineProps, ref } from "vue";
 import { useTaskStore } from "@/stores/TaskStore";
-import CloseIcon from "./CloseIcon.vue";
+import IconClose from "./IconClose.vue";
+import IconEdit from "./IconEdit.vue";
 
 const { task } = defineProps({ task: Object });
 
@@ -15,7 +16,7 @@ const deleteTask = () => {
 };
 
 const editTask = () => {
-  if (!taskStore.mode !== "create") {
+  if (!taskStore.isModeEdit) {
     editMode.value = "on";
     taskStore.setMode("edit");
   }
@@ -52,21 +53,21 @@ const updateDone = (e) => {
 
 <template>
   <div
-    class="todo-item flex justify-between my-1 p-2 bg-slate-200 text-left pl-4"
-    :class="{ 'bg-green-50 drop-shadow-lg': editMode === 'on' }"
+    class="todo-item flex justify-between my-1 p-2 text-left pl-4"
+    :class="{
+      'bg-green-50 drop-shadow-lg': editMode === 'on',
+      'bg-gray-100': editMode === 'off',
+    }"
   >
-    <div
-      class="flex justify-between w-full hover:cursor-pointer"
-      v-if="editMode === 'off'"
-    >
+    <div class="flex justify-between w-full" v-if="editMode === 'off'">
       <div>
         <input
           type="checkbox"
-          class="mr-4 w-4 h-4"
+          class="mr-8 mt-1.5 w-4 h-4"
           :checked="task.done"
           @change="updateDone"
         />
-        <span @click="editTask">
+        <span>
           {{ task.text }}
         </span>
       </div>
@@ -84,12 +85,17 @@ const updateDone = (e) => {
       @keyup.esc="escape"
     />
 
-    <div
-      v-if="editMode === 'off'"
-      class="right w-4 self-center hover:cursor-pointer"
-      @click="deleteTask"
-    >
-      <CloseIcon />
+    <div class="flex">
+      <IconEdit
+        v-if="editMode === 'off'"
+        class="w-6 hover:cursor-pointer mx-1.5 px-1 hover:bg-blue-400"
+        @click="editTask"
+      />
+      <IconClose
+        v-if="editMode === 'off'"
+        class="right w-4 mx-1.5 self-center hover:cursor-pointer hover:bg-red-400"
+        @click="deleteTask"
+      />
     </div>
   </div>
 </template>
