@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref } from "vue";
+import { defineProps, ref, computed } from "vue";
 import { useTaskStore } from "@/stores/TaskStore";
 import IconClose from "./IconClose.vue";
 import IconEdit from "./IconEdit.vue";
@@ -23,7 +23,6 @@ const editTask = () => {
 };
 
 const focusInputEdit = () => {
-  inputEdit.value.focus();
   inputEdit.value.select();
 };
 
@@ -49,28 +48,27 @@ const updateDone = (e) => {
     done: e.target.checked,
   });
 };
+
+const classTodoItem = computed(() =>
+  editMode === "on" ? "bg-green-50 drop-shadow-lg" : "bg-gray-100"
+);
 </script>
 
 <template>
   <div
     class="todo-item flex justify-between my-1 p-2 text-left pl-4"
-    :class="{
-      'bg-green-50 drop-shadow-lg': editMode === 'on',
-      'bg-gray-100': editMode === 'off',
-    }"
+    :class="classTodoItem"
   >
-    <div class="flex justify-between w-full" v-if="editMode === 'off'">
-      <div>
-        <input
-          type="checkbox"
-          class="mr-8 mt-1.5 w-4 h-4"
-          :checked="task.done"
-          @change="updateDone"
-        />
-        <span>
-          {{ task.text }}
-        </span>
-      </div>
+    <div class="flex w-full" v-if="editMode === 'off'">
+      <input
+        type="checkbox"
+        class="mr-8 mt-1.5 w-4 h-4"
+        :checked="task.done"
+        @change="updateDone"
+      />
+      <span>
+        {{ task.text }}
+      </span>
     </div>
 
     <input

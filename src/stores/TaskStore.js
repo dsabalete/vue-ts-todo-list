@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { uuid } from "vue-uuid";
+import { MODES } from "@/common/consts";
 
 export const useTaskStore = defineStore("TaskStore", {
   state: () => {
@@ -40,15 +41,15 @@ export const useTaskStore = defineStore("TaskStore", {
 
   getters: {
     isModeDefault() {
-      return this.mode === "";
+      return this.mode === MODES.default;
     },
 
     isModeEdit() {
-      return this.mode === "edit";
+      return this.mode === MODES.edit;
     },
 
     isModeCreate() {
-      return this.mode === "create";
+      return this.mode === MODES.create;
     },
   },
 });
